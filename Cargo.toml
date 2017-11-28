@@ -1,0 +1,9 @@
+[package]
+name = "forbes"
+version = "0.1.0"
+authors = ["Jon Gjengset <jon@thesquareplanet.com>"]
+
+[dependencies]
+select = "0.4.2"
+reqwest = "0.8.1"
+slack-hook = "0.6"
