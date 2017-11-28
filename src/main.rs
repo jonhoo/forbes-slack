@@ -202,7 +202,7 @@ fn main() {
                     0 => "".to_string(),
                     1 => format!("contains {}", has[0]),
                     2 => format!("contains {} and {}", has[0], has[1]),
-                    n => format!("; contains {}", has.join(", and ")).replacen(
+                    n => format!("contains {}", has.join(", and ")).replacen(
                         ", and ",
                         ", ",
                         n.saturating_sub(2),
