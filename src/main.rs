@@ -16,7 +16,6 @@ struct Dish<'a> {
 }
 
 fn main() {
-    let slack = Slack::new(&*env::var("SLACK_WEBHOOK_URL").unwrap()).unwrap();
     let mut resp = reqwest::get(
         "https://mit.campusdish.com/Commerce/Catalog/Menus.aspx?LocationId=9333&PeriodId=1440",
     ).unwrap();
@@ -125,6 +124,11 @@ fn main() {
                 },
             );
         }
+    }
+
+    if dishes.is_empty() {
+        println!("I don't think the café is open today...");
+        return;
     }
 
     let mut meats = Vec::new();
@@ -239,5 +243,10 @@ fn main() {
         .build()
         .unwrap();
 
-    slack.send(&p).unwrap();
+    if let Ok(url) = env::var("SLACK_WEBHOOK_URL") {
+        let slack = Slack::new(&*url).unwrap();
+        slack.send(&p).unwrap();
+    } else {
+        println!("{:#?}", p);
+    }
 }
