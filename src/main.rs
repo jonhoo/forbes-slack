@@ -127,14 +127,6 @@ fn main() {
         }
     }
 
-    use std::iter::FromIterator;
-    let mut dishes = Vec::from_iter(dishes.into_iter());
-    dishes.sort_unstable_by(|a, b| {
-        (a.1.icon == ":rice:")
-            .cmp(&(b.1.icon == ":rice:"))
-            .then_with(|| a.1.icon.cmp(&b.1.icon))
-    });
-
     let mut meats = Vec::new();
     let mut veggies = Vec::new();
     let mut sides = Vec::new();
